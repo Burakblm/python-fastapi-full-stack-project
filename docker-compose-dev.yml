@@ -1,0 +1,44 @@
+version: "3"
+services:
+  api:
+    build: .
+    ports:
+      - 8000:8000
+    environment:
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_PASSWORD=Burak115
+      - POSTGRES_DB=db
+      - POSTGRES_USER=burak
+      - ALGORITHM=HS256
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=Burak115
+      - POSTGRES_USER=burak
+      - POSTGRES_DB=db
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+  prestart:
+    build: .
+    command: bash /app/scripts/prestart.sh
+    environment:
+      - PYTHONPATH=/app
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_PASSWORD=Burak115
+      - POSTGRES_DB=db
+      - POSTGRES_USER=burak
+      - ALGORITHM=HS256
+    depends_on:
+      - postgres
+      - api
+
+volumes:
+  postgres-db:
