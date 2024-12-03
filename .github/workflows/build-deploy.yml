@@ -37,6 +37,15 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_PROJECT_NAME }}:latest
 
   deploy:
+    env:
+      POSTGRES_SERVER: ${{secrets.POSTGRES_SERVER}}
+      POSTGRES_PORT: ${{secrets.POSTGRES_PORT}}
+      POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+      POSTGRES_DB: ${{secrets.POSTGRES_DB}}
+      POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+      ALGORITHM: ${{secrets.ALGORITHM}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      
     runs-on: ubuntu-latest
     needs: build
 
