@@ -33,7 +33,6 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 def get_user_data(
     db: Session = Depends(get_db), current_user: int = Depends(get_current_user)
 ):
-    print(current_user)
-    user_data = db.query(models.User).filter(models.User.id == current_user).first()
-    print(user_data)
+    user_data = db.query(models.User).filter(models.User.id == current_user.id).first()
+
     return user_data
