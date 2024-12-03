@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    build: .
+    build: burakblm/python-full-stack-backend:latest
     ports:
       - 8000:8000
     environment:
@@ -26,7 +26,7 @@ services:
       - postgres-db:/var/lib/postgresql/data
 
   prestart:
-    build: .
+    image: burakblm/python-full-stack-backend:latest
     command: bash /app/scripts/prestart.sh
     environment:
       - PYTHONPATH=/app

@@ -60,10 +60,10 @@ jobs:
         run: |
           ssh $USER@$HOST << "EOF"
 
-          cd /home/burak/core4all
+          cd /home/burak/python-fastapi-full-stack-project
 
           git pull
 
-          bash /home/burak/core4all/scripts/build-run.sh
+          bash /home/burak/python-fastapi-full-stack-project/scripts/build-run.sh
 
           EOF
