@@ -5,23 +5,23 @@ services:
     ports:
       - 8000:8000
     environment:
-      - POSTGRES_SERVER=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_PASSWORD=Burak115
-      - POSTGRES_DB=gardrop
-      - POSTGRES_USER=burak
-      - ALGORITHM=HS256
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - ALGORITHM=${ALGORITHM}
     depends_on:
       - postgres
 
   postgres:
     image: postgres
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     environment:
-      - POSTGRES_PASSWORD=Burak115
-      - POSTGRES_USER=burak
-      - POSTGRES_DB=gardrop
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - postgres-db:/var/lib/postgresql/data
 
@@ -30,12 +30,12 @@ services:
     command: bash /app/scripts/prestart.sh
     environment:
       - PYTHONPATH=/app
-      - POSTGRES_SERVER=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_PASSWORD=Burak115
-      - POSTGRES_DB=gardrop
-      - POSTGRES_USER=burak
-      - ALGORITHM=HS256
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - ALGORITHM=${ALGORITHM}
     depends_on:
       - postgres
       - api
